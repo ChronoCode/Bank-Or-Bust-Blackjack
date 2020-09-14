@@ -101,9 +101,19 @@ class App extends React.Component {
 
   findCardTotal(whoseHand) {
     let total = 0;
+    let aces = [];
     for (let i = 0; i < whoseHand.length; i++) {
-      total += this.cardValue(total, whoseHand[i]);
+      if (whoseHand[i].value === "ACE") {
+        aces.push(whoseHand[i]);
+      } else {
+        total += this.cardValue(total, whoseHand[i]);
+      }
     }
+
+    for (let j = 0; j < aces.length; j++) {
+      total += this.cardValue(total, aces[j]);
+    }
+
     return total;
   }
 
@@ -126,15 +136,18 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.stage);
     if (this.state.stage === 'signUpIn') {
-      return (<SignUpIn
-        setAvailableCoins={(value) => this.setState({ coins: value })}
-        setStage={(stage) => this.setState({ stage })}
-        setUsername={(username) => this.setState({ username })}
-      />);
+      return (
+        <div>
+          <h1>Bank-Or-Bust Blackjack</h1>
+          <SignUpIn
+            setAvailableCoins={(value) => this.setState({ coins: value })}
+            setStage={(stage) => this.setState({ stage })}
+            setUsername={(username) => this.setState({ username })}
+          />
+        </div>
+      );
     } else {
-
       let playAgainButton = null;
       let message = null;
       if (this.state.stage === 'playerStay'
@@ -161,7 +174,6 @@ class App extends React.Component {
           message = (
             <div>Dealer wins, you lose.</div>
           );
-
           if (this.state.stage !== 'roundOver') {
             setTimeout(() => this.setState({
               stage: 'roundOver'
@@ -171,8 +183,8 @@ class App extends React.Component {
           message = (
             <div>It's a push.</div>
           );
-
           if (this.state.stage !== 'roundOver') {
+            console.log('printed')
             setTimeout(() => this.setState({
               stage: 'roundOver',
               coins: this.state.coins + this.state.bet
@@ -200,6 +212,11 @@ class App extends React.Component {
       if (this.state.shoe.length > 0) {
         return (
           <div>
+            <h1>Bank-Or-Bust Blackjack</h1>
+            <div>
+              <div>Your Coins: {this.state.coins}</div>
+              <div>Current Bet: {this.state.bet}</div>
+            </div>
             {message}
             <Dealer dealerHand={this.state.dealerHand}
               stage={this.state.stage} />
@@ -212,8 +229,6 @@ class App extends React.Component {
               findCardTotal={this.findCardTotal}
               notEnoughCoins={this.state.notEnoughCoins}
             />
-            <div>Current Bet: {this.state.bet}</div>
-            <div>Your Coins: {this.state.coins}</div>
             {playAgainButton}
           </div>
         );

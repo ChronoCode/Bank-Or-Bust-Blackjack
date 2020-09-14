@@ -30,18 +30,18 @@ const Player = (props) => {
       );
     } else if (total > 21) {
       situationDiv = (
-        <div>You Busted</div>
+        <div>
+          <div>You Busted</div>
+          {props.stage === 'playerBust' || props.stage === 'roundOver' ? null : <button onClick={(event) => props.stayOrBust('playerBust')}>See Dealer's Cards</button>}
+        </div>
       );
-      if (props.stage !== 'playerBust') {
-        setTimeout(() => props.stayOrBust('playerBust'), 3000);
-      }
-    } else if (total === 21){
+    } else if (total === 21) {
       situationDiv = (
-        <div>You Got 21!</div>
+        <div>
+          <div>You Got 21!</div>
+          <button onClick={() => props.stayOrBust('playerStay')}>Stay</button>
+        </div>
       );
-      if (props.stage !== 'playerStay') {
-        setTimeout(() => props.stayOrBust('playerStay'), 3000);
-      }
     }
 
     return (
