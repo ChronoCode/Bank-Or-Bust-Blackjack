@@ -1,5 +1,5 @@
 module.exports = {
-  entry: __dirname + '/src/index.js',
+  entry: __dirname + '/src/index.jsx',
   module: {
     rules: [
       {
@@ -9,16 +9,21 @@ module.exports = {
           loader: "babel-loader"
         }
       },
-    {
+      {
         // For pure CSS (without CSS modules)
         test: /\.css$/i,
         exclude: /\.module\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        // For images
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use: ['file-loader'],
+      },
     ]
   },
   output: {
-        filename: 'bundle.js',
-        path: __dirname + '/dist'
-      }
+    filename: 'bundle.js',
+    path: __dirname + '/dist'
+  }
 };
