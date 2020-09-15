@@ -218,7 +218,8 @@ class App extends React.Component {
             );
           }
           if (this.findCardTotal(this.state.playerHand) === 21
-            && this.state.playerHand.length === 2) {
+            && this.state.playerHand.length === 2
+            && this.state.stage !== 'roundOver') {
             setTimeout(() => this.setState({
               stage: 'roundOver',
               coins: this.state.coins + (this.state.bet * 2.5)
@@ -265,8 +266,7 @@ class App extends React.Component {
                 stage: 'beforeDeal',
                 dealerHand: [],
                 playerHand: [],
-                coinValueSent: false,
-                bet: 0
+                coinValueSent: false
               })} >Play Again?
             </Button>
           </div>

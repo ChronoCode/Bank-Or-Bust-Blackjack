@@ -34,6 +34,11 @@ const Player = (props) => {
       </div>
     );
   } else {
+    let doubleDownButton = null;
+    if (props.playerHand.length === 2 && props.stage === 'afterDeal') {
+      doubleDownButton = (<Button onClick={props.doubleDown}>Double Down!</Button>);
+    }
+
     let total = props.findCardTotal(props.playerHand);
 
     let situationDiv = null;
@@ -42,12 +47,13 @@ const Player = (props) => {
         <div className='playerActions'>
           <Button onClick={() => props.stayOrBust('playerStay')}>Stay</Button>
           <Button onClick={props.drawCardForPlayer}>Hit Me!</Button>
+          {doubleDownButton}
         </div>
       );
     } else if (total > 21) {
       situationDiv = (
         <div className='playerActions'>
-          <h3>You Busted</h3>
+          <h3>You Busted!</h3>
           {props.stage === 'playerBust' || props.stage === 'roundOver' ? null : <Button onClick={(event) => props.stayOrBust('playerBust')}>See Dealer's Cards</Button>}
         </div>
       );
@@ -55,14 +61,9 @@ const Player = (props) => {
       situationDiv = (
         <div className='playerActions'>
           <h3>You Got 21!</h3>
-          <Button onClick={() => props.stayOrBust('playerStay')}>See Dealer's Cards</Button>
+          {props.stage === 'playerStay' || props.stage === 'roundOver' ? null : <Button onClick={() => props.stayOrBust('playerStay')}>See Dealer's Cards</Button>}
         </div>
       );
-    }
-
-    let doubleDownButton = null;
-    if (props.playerHand.length === 2 && props.stage === 'afterDeal') {
-      doubleDownButton = (<Button onClick={props.doubleDown}>Double Down!</Button>);
     }
 
     return (
@@ -75,10 +76,7 @@ const Player = (props) => {
             );
           })}
         </div>
-        <div className='morePlayerActions'>
-          {situationDiv}
-          {doubleDownButton}
-        </div>
+        {situationDiv}
       </div>
     );
   }
