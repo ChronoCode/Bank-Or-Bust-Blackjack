@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
+import Alert from 'react-bootstrap/Alert';
 
 const Player = (props) => {
   let [betValue, setBetValue] = useState(0);
@@ -10,7 +11,7 @@ const Player = (props) => {
   if (props.stage === 'beforeDeal') {
     let notEnoughCoinsWarning = null;
     if (props.notEnoughCoins) {
-      notEnoughCoinsWarning = (<div>You cannot bet more than you have.</div>);
+      notEnoughCoinsWarning = (<Alert className='alert' variant='danger'>You cannot bet more than you have.</Alert>);
     }
 
     return (
@@ -59,6 +60,11 @@ const Player = (props) => {
       );
     }
 
+    let doubleDownButton = null;
+    if (props.playerHand.length === 2 && props.stage === 'afterDeal') {
+      doubleDownButton = (<Button onClick={props.doubleDown}>Double Down!</Button>);
+    }
+
     return (
       <div className='playerHand'>
         <h3 className='handHeader'>Player's Hand:</h3>
@@ -69,7 +75,10 @@ const Player = (props) => {
             );
           })}
         </div>
-        {situationDiv}
+        <div className='morePlayerActions'>
+          {situationDiv}
+          {doubleDownButton}
+        </div>
       </div>
     );
   }

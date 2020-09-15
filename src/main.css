@@ -69,7 +69,7 @@ img {
   justify-content: center;
 }
 
-.playerActions {
+.playerActions, .morePlayerActions {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -79,4 +79,8 @@ img {
   display: flex;
   justify-content: center;
   margin-top: 2vh;
+}
+
+.alert {
+  text-align: center;
 }

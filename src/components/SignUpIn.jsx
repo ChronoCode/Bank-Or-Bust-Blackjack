@@ -67,17 +67,17 @@ const SignUpIn = (props) => {
 
   let signUpWarning = null;
   if (showTooShort) {
-    signUpWarning = (<Alert variant='primary'>Either your username or password is too short.</Alert>);
+    signUpWarning = (<Alert className='alert' variant='danger'>Either your username or password is too short.</Alert>);
   }
 
   let signUpDuplicate = null;
   if (alreadyExists) {
-    signUpDuplicate = (<Alert variant='primary'>I am sorry, that username is already in use, please try a different one.</Alert>);
+    signUpDuplicate = (<Alert className='alert' variant='danger'>I am sorry, that username is already in use, please try a different one.</Alert>);
   }
 
   let notValidSignIn = null;
   if (notValid) {
-    notValidSignIn = (<Alert variant='primary'>I am sorry, the username or password you have entered is incorrect.</Alert>);
+    notValidSignIn = (<Alert className='alert' variant='danger'>I am sorry, the username or password you have entered is incorrect.</Alert>);
   }
 
   return (

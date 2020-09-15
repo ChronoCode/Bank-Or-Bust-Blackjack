@@ -34,6 +34,7 @@ class App extends React.Component {
     this.stayOrBust = this.stayOrBust.bind(this);
     this.setBet = this.setBet.bind(this);
     this.findCardTotal = this.findCardTotal.bind(this);
+    this.doubleDown = this.doubleDown.bind(this);
   }
 
   componentDidMount() {
@@ -51,7 +52,7 @@ class App extends React.Component {
     axios.get('/leaderboard')
       .then((res) => {
         this.setState({ leaderBoard: res.data });
-      })
+      });
   }
 
   getNewShoe() {
@@ -92,6 +93,17 @@ class App extends React.Component {
       stage: 'afterDeal',
       coins: this.state.coins - this.state.bet
     });
+  }
+
+  doubleDown() {
+    let newCard = this.drawCard();
+
+    this.setState({
+      coins: this.state.coins - this.state.bet,
+      bet: this.state.bet * 2,
+      playerHand: this.state.playerHand.concat(newCard),
+      stage: 'playerStay'
+    })
   }
 
   stayOrBust(situ) {
@@ -193,16 +205,16 @@ class App extends React.Component {
         if (winner === 'player') {
           if (this.findCardTotal(this.state.dealerHand) > 21) {
             message = (
-              <Alert>The Dealer Busted! You Win!</Alert>
+              <Alert className='alert' variant='primary'>The Dealer Busted! You Win!</Alert>
             );
           } else if (this.findCardTotal(this.state.playerHand) === 21
             && this.state.playerHand.length === 2) {
             message = (
-              <Alert>You got Blackjack! You win 2.5 times your bet!</Alert>
+              <Alert className='alert' variant='primary'>You got Blackjack! You win 2.5 times your bet!</Alert>
             );
           } else {
             message = (
-              <Alert>You Win!</Alert>
+              <Alert className='alert' variant='primary'>You Win!</Alert>
             );
           }
           if (this.findCardTotal(this.state.playerHand) === 21
@@ -219,7 +231,7 @@ class App extends React.Component {
           }
         } else if (winner === 'dealer') {
           message = (
-            <Alert>Dealer wins, you lose.</Alert>
+            <Alert className='alert' variant='primary'>Dealer wins, you lose.</Alert>
           );
           if (this.state.stage !== 'roundOver') {
             setTimeout(() => this.setState({
@@ -228,7 +240,7 @@ class App extends React.Component {
           }
         } else if (winner === 'push') {
           message = (
-            <Alert>It's a push.</Alert>
+            <Alert className='alert' variant='primary'>It's a push.</Alert>
           );
           if (this.state.stage !== 'roundOver') {
             console.log('printed')
@@ -283,6 +295,7 @@ class App extends React.Component {
               dealInitialCards={this.dealInitialCards}
               stayOrBust={this.stayOrBust}
               setBet={this.setBet}
+              doubleDown={this.doubleDown}
               findCardTotal={this.findCardTotal}
               notEnoughCoins={this.state.notEnoughCoins}
             />
