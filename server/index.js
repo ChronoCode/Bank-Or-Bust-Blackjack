@@ -36,7 +36,6 @@ app.put('/updateCoins', async (req, res) => {
 
 app.get('/leaderboard', async (req, res) => {
   let dbResponse = await dbControl.getLeaderBoard();
-  console.log(dbResponse);
 
   res.send(dbResponse);
 });
