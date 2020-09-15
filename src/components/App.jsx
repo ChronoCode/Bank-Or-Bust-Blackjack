@@ -151,6 +151,16 @@ class App extends React.Component {
       return 'dealer';
     } else if (dTotal > 21) {
       return 'player';
+    } else if (pTotal === 21
+      && dTotal === 21
+      && this.state.dealerHand.length === 2
+      && this.state.playerHand.length > 2) {
+      return 'dealer';
+    } else if (pTotal === 21
+      && dTotal === 21
+      && this.state.dealerHand.length > 2
+      && this.state.playerHand.length === 2) {
+      return 'player';
     } else {
       return 'push';
     }
@@ -185,12 +195,23 @@ class App extends React.Component {
             message = (
               <Alert>The Dealer Busted! You Win!</Alert>
             );
+          } else if (this.findCardTotal(this.state.playerHand) === 21
+            && this.state.playerHand.length === 2) {
+            message = (
+              <Alert>You got Blackjack! You win 2.5 times your bet!</Alert>
+            );
           } else {
             message = (
               <Alert>You Win!</Alert>
             );
           }
-          if (this.state.stage !== 'roundOver') {
+          if (this.findCardTotal(this.state.playerHand) === 21
+            && this.state.playerHand.length === 2) {
+            setTimeout(() => this.setState({
+              stage: 'roundOver',
+              coins: this.state.coins + (this.state.bet * 2.5)
+            }), 0);
+          } else if (this.state.stage !== 'roundOver') {
             setTimeout(() => this.setState({
               stage: 'roundOver',
               coins: this.state.coins + (this.state.bet * 2)
