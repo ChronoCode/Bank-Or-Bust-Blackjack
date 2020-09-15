@@ -18,26 +18,28 @@ const Leaderboard = (props) => {
           <Modal.Title>Leaderboard:</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Username</th>
-                <th>Coins Won</th>
-              </tr>
-            </thead>
-            <tbody>
-              {props.lbData.map((leaderData, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>{leaderData.username}</td>
-                    <td>{leaderData.coins}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </Table>
+          <div className='lbEntries'>
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Username</th>
+                  <th>Coins Won</th>
+                </tr>
+              </thead>
+              <tbody>
+                {props.lbData.map((leaderData, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>{leaderData.username}</td>
+                      <td>{leaderData.coins}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </Table>
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => props.showHide(false)}>

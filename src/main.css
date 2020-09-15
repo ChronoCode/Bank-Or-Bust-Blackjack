@@ -91,3 +91,7 @@ img {
   font-size: large;
 }
 
+.lbEntries {
+  max-height: 60vh;
+  overflow-y: auto;
+}
