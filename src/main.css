@@ -9,3 +9,27 @@ img {
   background-color: black;
   border-radius: 5%;
 }
+
+.coinValues {
+  display: flex;
+  justify-content: space-around;
+}
+
+.signUpIn {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.signUp {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.signIn {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 20px;
+}

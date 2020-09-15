@@ -76,8 +76,8 @@ const SignUpIn = (props) => {
   }
 
   return (
-    <div>
-      <div>
+    <div className='signUpIn'>
+      <div className='signUp'>
         <h3>Sign Up:</h3>
         {signUpWarning}
         {signUpDuplicate}
@@ -91,7 +91,7 @@ const SignUpIn = (props) => {
           /></label>
         <button onClick={signUp}>Sign Up</button>
       </div>
-      <div>
+      <div className='signIn'>
         <h3>Sign In:</h3>
         {notValidSignIn}
         <label>Username:

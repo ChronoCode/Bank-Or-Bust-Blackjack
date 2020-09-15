@@ -31,22 +31,22 @@ const Player = (props) => {
     } else if (total > 21) {
       situationDiv = (
         <div>
-          <div>You Busted</div>
+          <h3>You Busted</h3>
           {props.stage === 'playerBust' || props.stage === 'roundOver' ? null : <button onClick={(event) => props.stayOrBust('playerBust')}>See Dealer's Cards</button>}
         </div>
       );
     } else if (total === 21) {
       situationDiv = (
         <div>
-          <div>You Got 21!</div>
-          <button onClick={() => props.stayOrBust('playerStay')}>Stay</button>
+          <h3>You Got 21!</h3>
+          <button onClick={() => props.stayOrBust('playerStay')}>See Dealer's Cards</button>
         </div>
       );
     }
 
     return (
       <div>
-        <div>Player's Hand:</div>
+        <h3>Player's Hand:</h3>
         <div>
           {props.playerHand.map((card, index) => {
             return (

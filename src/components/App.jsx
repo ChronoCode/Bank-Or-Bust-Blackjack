@@ -213,7 +213,7 @@ class App extends React.Component {
         return (
           <div>
             <h1>Bank-Or-Bust Blackjack</h1>
-            <div>
+            <div className='coinValues'>
               <div>Your Coins: {this.state.coins}</div>
               <div>Current Bet: {this.state.bet}</div>
             </div>

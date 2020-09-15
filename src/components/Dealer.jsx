@@ -15,7 +15,7 @@ const Dealer = (props) => {
     || props.stage === 'roundOver') {
     return (
       <div>
-        <div>Dealer's Hand:</div>
+        <h3>Dealer's Hand:</h3>
         {props.dealerHand.map((card, index) => {
           return (
             <img src={card.image} key={index} />
