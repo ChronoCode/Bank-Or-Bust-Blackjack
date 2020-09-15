@@ -46,7 +46,7 @@ const Player = (props) => {
       situationDiv = (
         <div className='playerActions'>
           <Button onClick={() => props.stayOrBust('playerStay')}>Stay</Button>
-          <Button onClick={props.drawCardForPlayer}>Hit Me!</Button>
+          <Button calssName='hitButton' onClick={props.drawCardForPlayer}>Hit Me!</Button>
           {doubleDownButton}
         </div>
       );

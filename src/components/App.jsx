@@ -110,13 +110,17 @@ class App extends React.Component {
     this.setState({ stage: situ });
 
     if (situ === 'playerStay') {
-      let newDealerHand = [];
-      newDealerHand = newDealerHand.concat(this.state.dealerHand);
-      while (this.findCardTotal(newDealerHand) < 17) {
-        newDealerHand = newDealerHand.concat(this.drawCard());
-      }
+      // inner if handles player blackjack
+      if (!(this.findCardTotal(this.state.playerHand) === 21
+        && this.state.playerHand.length === 2)) {
+        let newDealerHand = [];
+        newDealerHand = newDealerHand.concat(this.state.dealerHand);
+        while (this.findCardTotal(newDealerHand) < 17) {
+          newDealerHand = newDealerHand.concat(this.drawCard());
+        }
 
-      this.setState({ dealerHand: newDealerHand });
+        this.setState({ dealerHand: newDealerHand });
+      }
     }
   }
 
@@ -203,14 +207,14 @@ class App extends React.Component {
         || this.state.stage === 'roundOver') {
         let winner = this.findWinner();
         if (winner === 'player') {
-          if (this.findCardTotal(this.state.dealerHand) > 21) {
-            message = (
-              <Alert className='alert' variant='primary'>The Dealer Busted! You Win!</Alert>
-            );
-          } else if (this.findCardTotal(this.state.playerHand) === 21
+          if (this.findCardTotal(this.state.playerHand) === 21
             && this.state.playerHand.length === 2) {
             message = (
               <Alert className='alert' variant='primary'>You got Blackjack! You win 2.5 times your bet!</Alert>
+            );
+          } else if (this.findCardTotal(this.state.dealerHand) > 21) {
+            message = (
+              <Alert className='alert' variant='primary'>The Dealer Busted! You Win!</Alert>
             );
           } else {
             message = (
