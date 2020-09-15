@@ -4,23 +4,27 @@ import cardBack from '../assets/red_masters_back.png';
 const Dealer = (props) => {
   if (props.stage === 'afterDeal') {
     return (
-      <div>
-        <div>Dealer's Hand:</div>
-        <img src={cardBack} />
-        <img src={props.dealerHand[1].image} />
+      <div className='dealerHand'>
+        <h3 className='handHeader'>Dealer's Hand:</h3>
+        <div>
+          <img src={cardBack} />
+          <img src={props.dealerHand[1].image} />
+        </div>
       </div>
     );
   } else if (props.stage === 'playerStay'
     || props.stage === 'playerBust'
     || props.stage === 'roundOver') {
     return (
-      <div>
-        <h3>Dealer's Hand:</h3>
-        {props.dealerHand.map((card, index) => {
-          return (
-            <img src={card.image} key={index} />
-          );
-        })}
+      <div className='dealerHand'>
+        <h3 className='handHeader'>Dealer's Hand:</h3>
+        <div>
+          {props.dealerHand.map((card, index) => {
+            return (
+              <img src={card.image} key={index} />
+            );
+          })}
+        </div>
       </div>
     );
   } else {

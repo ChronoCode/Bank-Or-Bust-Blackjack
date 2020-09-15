@@ -1,4 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+
+import Button from 'react-bootstrap/Button';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
 
 const Player = (props) => {
   let [betValue, setBetValue] = useState(0);
@@ -10,11 +14,22 @@ const Player = (props) => {
     }
 
     return (
-      <div>
+      <div className='betInput'>
         {notEnoughCoinsWarning}
-        <input type='number' min='0' onChange={(event) => setBetValue(Number(event.target.value))} />
-        <button onClick={() => props.setBet(betValue)}>Set Bet Amount</button>
-        <button onClick={props.dealInitialCards}>Deal!</button>
+        <InputGroup>
+          <InputGroup.Prepend>
+            <InputGroup.Text>Bet: </InputGroup.Text>
+          </InputGroup.Prepend>
+          <FormControl
+            type='number'
+            min='0'
+            onChange={(event) => setBetValue(Number(event.target.value))}
+          />
+        </InputGroup>
+        <div className='betButtons'>
+          <Button onClick={() => props.setBet(betValue)}>Set Bet Amount</Button>
+          <Button onClick={props.dealInitialCards}>Deal!</Button>
+        </div>
       </div>
     );
   } else {
@@ -24,29 +39,29 @@ const Player = (props) => {
     if (total < 21 && props.stage !== 'playerStay' && props.stage !== 'roundOver') {
       situationDiv = (
         <div>
-          <button onClick={props.drawCardForPlayer}>Hit Me!</button>
-          <button onClick={() => props.stayOrBust('playerStay')}>Stay</button>
+          <Button onClick={props.drawCardForPlayer}>Hit Me!</Button>
+          <Button onClick={() => props.stayOrBust('playerStay')}>Stay</Button>
         </div>
       );
     } else if (total > 21) {
       situationDiv = (
         <div>
           <h3>You Busted</h3>
-          {props.stage === 'playerBust' || props.stage === 'roundOver' ? null : <button onClick={(event) => props.stayOrBust('playerBust')}>See Dealer's Cards</button>}
+          {props.stage === 'playerBust' || props.stage === 'roundOver' ? null : <Button onClick={(event) => props.stayOrBust('playerBust')}>See Dealer's Cards</Button>}
         </div>
       );
     } else if (total === 21) {
       situationDiv = (
         <div>
           <h3>You Got 21!</h3>
-          <button onClick={() => props.stayOrBust('playerStay')}>See Dealer's Cards</button>
+          <Button onClick={() => props.stayOrBust('playerStay')}>See Dealer's Cards</Button>
         </div>
       );
     }
 
     return (
       <div>
-        <h3>Player's Hand:</h3>
+        <h3 className='handHeader'>Player's Hand:</h3>
         <div>
           {props.playerHand.map((card, index) => {
             return (

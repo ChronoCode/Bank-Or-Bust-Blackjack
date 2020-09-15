@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+import Button from 'react-bootstrap/Button';
+import FormControl from 'react-bootstrap/FormControl';
+import InputGroup from 'react-bootstrap/InputGroup';
+
 const SignUpIn = (props) => {
   let [signUpName, setSignUpName] = useState('');
   let [signUpPW, setSignUpPW] = useState('');
@@ -81,28 +85,48 @@ const SignUpIn = (props) => {
         <h3>Sign Up:</h3>
         {signUpWarning}
         {signUpDuplicate}
-        <label>Username:
-        <input type='text'
+        <InputGroup>
+          <InputGroup.Prepend>
+            <InputGroup.Text>Username: </InputGroup.Text>
+          </InputGroup.Prepend>
+          <FormControl
+            placeholder="username"
             onChange={(event) => setSignUpName(event.target.value.trim())}
-          /></label>
-        <label>Password:
-        <input type='text'
+          />
+        </InputGroup>
+        <InputGroup>
+          <InputGroup.Prepend>
+            <InputGroup.Text>Password: </InputGroup.Text>
+          </InputGroup.Prepend>
+          <FormControl
+            placeholder="password"
             onChange={(event) => setSignUpPW(event.target.value.trim())}
-          /></label>
-        <button onClick={signUp}>Sign Up</button>
+          />
+        </InputGroup>
+        <Button onClick={signUp}>Sign Up</Button>
       </div>
       <div className='signIn'>
         <h3>Sign In:</h3>
         {notValidSignIn}
-        <label>Username:
-        <input type='text'
+        <InputGroup>
+          <InputGroup.Prepend>
+            <InputGroup.Text>Username: </InputGroup.Text>
+          </InputGroup.Prepend>
+          <FormControl
+            placeholder="username"
             onChange={(event) => setSignInName(event.target.value.trim())}
-          /></label>
-        <label>Password:
-        <input type='text'
+          />
+        </InputGroup>
+        <InputGroup>
+          <InputGroup.Prepend>
+            <InputGroup.Text>Password: </InputGroup.Text>
+          </InputGroup.Prepend>
+          <FormControl
+            placeholder="password"
             onChange={(event) => setSignInPW(event.target.value.trim())}
-          /></label>
-        <button onClick={signIn} >Sign In</button>
+          />
+        </InputGroup>
+        <Button onClick={signIn} >Sign In</Button>
       </div>
     </div>
   );

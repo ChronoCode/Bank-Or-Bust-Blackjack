@@ -13,12 +13,14 @@ img {
 .coinValues {
   display: flex;
   justify-content: space-around;
+  margin-top: 5vh;
 }
 
 .signUpIn {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  margin-top: 5vh;
 }
 
 .signUp {
@@ -32,4 +34,24 @@ img {
   justify-content: center;
   flex-direction: column;
   margin-top: 20px;
+}
+
+.betInput {
+  margin-top: 2vh;
+}
+
+.betButtons {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.dealerHand {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.handHeader {
+  text-align: center;
 }

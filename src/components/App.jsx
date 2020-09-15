@@ -5,6 +5,8 @@ import Dealer from './Dealer.jsx';
 import Player from './Player.jsx';
 import SignUpIn from './SignUpIn.jsx';
 
+import Button from 'react-bootstrap/Button';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -199,14 +201,14 @@ class App extends React.Component {
           }, 0);
         }
 
-        playAgainButton = (<button onClick={() => this.setState(
+        playAgainButton = (<Button onClick={() => this.setState(
           {
             stage: 'beforeDeal',
             dealerHand: [],
             playerHand: [],
             coinValueSent: false,
             bet: 0
-          })} >Play Again?</button>);
+          })} >Play Again?</Button>);
       }
 
       if (this.state.shoe.length > 0) {
@@ -214,8 +216,8 @@ class App extends React.Component {
           <div>
             <h1>Bank-Or-Bust Blackjack</h1>
             <div className='coinValues'>
-              <div>Your Coins: {this.state.coins}</div>
-              <div>Current Bet: {this.state.bet}</div>
+              <h5>Your Coins: {this.state.coins}</h5>
+              <h5>Current Bet: {this.state.bet}</h5>
             </div>
             {message}
             <Dealer dealerHand={this.state.dealerHand}
