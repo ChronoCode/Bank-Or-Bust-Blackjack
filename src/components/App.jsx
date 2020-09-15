@@ -8,6 +8,7 @@ import Leaderboard from './Leaderboard.jsx';
 
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
+import Alert from 'react-bootstrap/Alert';
 
 class App extends React.Component {
   constructor(props) {
@@ -158,8 +159,8 @@ class App extends React.Component {
   render() {
     if (this.state.stage === 'signUpIn') {
       return (
-        <div>
-          <h1>Bank-Or-Bust Blackjack</h1>
+        <Container className='appContainer'>
+          <h1 className='title'>Bank-Or-Bust Blackjack</h1>
           <Leaderboard
             lbData={this.state.leaderBoard}
             showLeaderBoard={this.state.showLeaderBoard}
@@ -170,7 +171,7 @@ class App extends React.Component {
             setStage={(stage) => this.setState({ stage })}
             setUsername={(username) => this.setState({ username })}
           />
-        </div>
+        </Container>
       );
     } else {
       let playAgainButton = null;
@@ -182,11 +183,11 @@ class App extends React.Component {
         if (winner === 'player') {
           if (this.findCardTotal(this.state.dealerHand) > 21) {
             message = (
-              <div>The Dealer Busted! You Win!</div>
+              <Alert>The Dealer Busted! You Win!</Alert>
             );
           } else {
             message = (
-              <div>You Win!</div>
+              <Alert>You Win!</Alert>
             );
           }
           if (this.state.stage !== 'roundOver') {
@@ -197,7 +198,7 @@ class App extends React.Component {
           }
         } else if (winner === 'dealer') {
           message = (
-            <div>Dealer wins, you lose.</div>
+            <Alert>Dealer wins, you lose.</Alert>
           );
           if (this.state.stage !== 'roundOver') {
             setTimeout(() => this.setState({
@@ -206,7 +207,7 @@ class App extends React.Component {
           }
         } else if (winner === 'push') {
           message = (
-            <div>It's a push.</div>
+            <Alert>It's a push.</Alert>
           );
           if (this.state.stage !== 'roundOver') {
             console.log('printed')
@@ -241,8 +242,8 @@ class App extends React.Component {
 
       if (this.state.shoe.length > 0) {
         return (
-          <Container>
-            <h1>Bank-Or-Bust Blackjack</h1>
+          <Container className='appContainer'>
+            <h1 className='title'>Bank-Or-Bust Blackjack</h1>
             <Leaderboard
               lbData={this.state.leaderBoard}
               showLeaderBoard={this.state.showLeaderBoard}

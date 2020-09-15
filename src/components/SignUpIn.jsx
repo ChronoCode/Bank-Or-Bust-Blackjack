@@ -4,6 +4,7 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import InputGroup from 'react-bootstrap/InputGroup';
+import Alert from 'react-bootstrap/Alert';
 
 const SignUpIn = (props) => {
   let [signUpName, setSignUpName] = useState('');
@@ -66,17 +67,17 @@ const SignUpIn = (props) => {
 
   let signUpWarning = null;
   if (showTooShort) {
-    signUpWarning = (<div>Either your username or password is too short.</div>);
+    signUpWarning = (<Alert variant='primary'>Either your username or password is too short.</Alert>);
   }
 
   let signUpDuplicate = null;
   if (alreadyExists) {
-    signUpDuplicate = (<div>I am sorry, that username is already in use, please try a different one.</div>);
+    signUpDuplicate = (<Alert variant='primary'>I am sorry, that username is already in use, please try a different one.</Alert>);
   }
 
   let notValidSignIn = null;
   if (notValid) {
-    notValidSignIn = (<div>I am sorry, the username or password you have entered is incorrect.</div>);
+    notValidSignIn = (<Alert variant='primary'>I am sorry, the username or password you have entered is incorrect.</Alert>);
   }
 
   return (

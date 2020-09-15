@@ -26,7 +26,6 @@ const Leaderboard = (props) => {
                 <th>Coins Won</th>
               </tr>
             </thead>
-
             <tbody>
               {props.lbData.map((leaderData, index) => {
                 return (

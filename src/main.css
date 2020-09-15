@@ -3,6 +3,14 @@ body {
   justify-content: center;
 }
 
+.appContainer {
+  width: 40vw !important;
+}
+
+.title {
+  text-align: center;
+}
+
 img {
   height: 200px;
   padding: 2px;
@@ -20,7 +28,7 @@ img {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-top: 5vh;
+  margin-top: 2vh;
 }
 
 .signUp {
@@ -70,4 +78,5 @@ img {
 .showLeaderboard {
   display: flex;
   justify-content: center;
+  margin-top: 2vh;
 }
