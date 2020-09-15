@@ -29,7 +29,7 @@ const Player = (props) => {
         </InputGroup>
         <div className='betButtons'>
           <Button onClick={() => props.setBet(betValue)}>Set Bet Amount</Button>
-          <Button onClick={props.dealInitialCards}>Deal!</Button>
+          <Button className='dealButton' onClick={props.dealInitialCards}>Deal!</Button>
         </div>
       </div>
     );

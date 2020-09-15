@@ -276,7 +276,7 @@ class App extends React.Component {
       if (this.state.shoe.length > 0) {
         return (
           <Container className='appContainer'>
-            <h1 className='title'>Bank-Or-Bust Blackjack</h1>
+            {/* <h1 className='title'>Bank-Or-Bust Blackjack</h1> */}
             <Leaderboard
               lbData={this.state.leaderBoard}
               showLeaderBoard={this.state.showLeaderBoard}
