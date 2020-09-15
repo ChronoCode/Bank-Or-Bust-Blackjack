@@ -34,4 +34,11 @@ app.put('/updateCoins', async (req, res) => {
   res.send(dbResponse);
 });
 
+app.get('/leaderboard', async (req, res) => {
+  let dbResponse = await dbControl.getLeaderBoard();
+  console.log(dbResponse);
+
+  res.send(dbResponse);
+});
+
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));

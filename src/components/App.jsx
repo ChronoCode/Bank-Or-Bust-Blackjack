@@ -4,8 +4,10 @@ import axios from 'axios';
 import Dealer from './Dealer.jsx';
 import Player from './Player.jsx';
 import SignUpIn from './SignUpIn.jsx';
+import Leaderboard from './Leaderboard.jsx';
 
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 
 class App extends React.Component {
   constructor(props) {
@@ -20,7 +22,9 @@ class App extends React.Component {
       coins: 1000,
       bet: 0,
       notEnoughCoins: false,
-      coinValueSent: false
+      coinValueSent: false,
+      leaderBoard: [],
+      showLeaderBoard: false
     };
 
     this.getNewShoe = this.getNewShoe.bind(this);
@@ -33,6 +37,20 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getNewShoe();
+    this.updateLeaderBoardData();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.coins !== prevState.coins) {
+      this.updateLeaderBoardData();
+    }
+  }
+
+  updateLeaderBoardData() {
+    axios.get('/leaderboard')
+      .then((res) => {
+        this.setState({ leaderBoard: res.data });
+      })
   }
 
   getNewShoe() {
@@ -142,6 +160,11 @@ class App extends React.Component {
       return (
         <div>
           <h1>Bank-Or-Bust Blackjack</h1>
+          <Leaderboard
+            lbData={this.state.leaderBoard}
+            showLeaderBoard={this.state.showLeaderBoard}
+            showHide={(show) => this.setState({ showLeaderBoard: show })}
+          />
           <SignUpIn
             setAvailableCoins={(value) => this.setState({ coins: value })}
             setStage={(stage) => this.setState({ stage })}
@@ -201,20 +224,30 @@ class App extends React.Component {
           }, 0);
         }
 
-        playAgainButton = (<Button onClick={() => this.setState(
-          {
-            stage: 'beforeDeal',
-            dealerHand: [],
-            playerHand: [],
-            coinValueSent: false,
-            bet: 0
-          })} >Play Again?</Button>);
+        playAgainButton = (
+          <div className='playerActions'>
+            <Button onClick={() => this.setState(
+              {
+                stage: 'beforeDeal',
+                dealerHand: [],
+                playerHand: [],
+                coinValueSent: false,
+                bet: 0
+              })} >Play Again?
+            </Button>
+          </div>
+        );
       }
 
       if (this.state.shoe.length > 0) {
         return (
-          <div>
+          <Container>
             <h1>Bank-Or-Bust Blackjack</h1>
+            <Leaderboard
+              lbData={this.state.leaderBoard}
+              showLeaderBoard={this.state.showLeaderBoard}
+              showHide={(show) => this.setState({ showLeaderBoard: show })}
+            />
             <div className='coinValues'>
               <h5>Your Coins: {this.state.coins}</h5>
               <h5>Current Bet: {this.state.bet}</h5>
@@ -232,7 +265,7 @@ class App extends React.Component {
               notEnoughCoins={this.state.notEnoughCoins}
             />
             {playAgainButton}
-          </div>
+          </Container>
         );
       } else {
         return (<div></div>);

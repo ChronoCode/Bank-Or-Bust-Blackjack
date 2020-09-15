@@ -6,7 +6,7 @@ const Dealer = (props) => {
     return (
       <div className='dealerHand'>
         <h3 className='handHeader'>Dealer's Hand:</h3>
-        <div>
+        <div className='cardDisplay'>
           <img src={cardBack} />
           <img src={props.dealerHand[1].image} />
         </div>
@@ -18,7 +18,7 @@ const Dealer = (props) => {
     return (
       <div className='dealerHand'>
         <h3 className='handHeader'>Dealer's Hand:</h3>
-        <div>
+        <div className='cardDisplay'>
           {props.dealerHand.map((card, index) => {
             return (
               <img src={card.image} key={index} />

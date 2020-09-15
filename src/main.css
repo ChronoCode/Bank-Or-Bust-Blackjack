@@ -4,7 +4,7 @@ body {
 }
 
 img {
-  height: 300px;
+  height: 200px;
   padding: 2px;
   background-color: black;
   border-radius: 5%;
@@ -46,7 +46,7 @@ img {
   flex-direction: column;
 }
 
-.dealerHand {
+.dealerHand, .playerHand {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -54,4 +54,20 @@ img {
 
 .handHeader {
   text-align: center;
+}
+
+.cardDisplay {
+  display: flex;
+  justify-content: center;
+}
+
+.playerActions {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.showLeaderboard {
+  display: flex;
+  justify-content: center;
 }

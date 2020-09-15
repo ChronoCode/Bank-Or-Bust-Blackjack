@@ -34,8 +34,15 @@ const updateCoins = async (coinData) => {
   return dbRes;
 }
 
+const getLeaderBoard = async () => {
+  let dbRes = await Player.find({}, '-_id username coins').sort({ coins: 'desc' });
+
+  return dbRes;
+}
+
 module.exports = {
   signUp,
   logIn,
-  updateCoins
+  updateCoins,
+  getLeaderBoard
 };
