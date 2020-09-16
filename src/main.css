@@ -10,6 +10,7 @@ body {
 
 .appContainer {
   width: 40vw;
+  max-height: 100vh;
 }
 
 .title {
@@ -98,15 +99,45 @@ img {
   font-size: 1.4rem;
 }
 
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 .showLeaderboard {
   display: flex;
   justify-content: center;
-  margin-top: 5vh;
 }
 
 .alert {
   text-align: center;
   font-size: large;
+}
+
+.message {
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.win {
+  background-color: goldenrod;
+  border-color: goldenrod;
+  color: black;
+}
+
+.blackjack {
+  background-color: goldenrod;
+  border-color: goldenrod;
+  color: black;
+}
+
+.dBust {
+  background-color: goldenrod;
+  border-color: goldenrod;
+  color: black;
+  font-size: 1.5rem;
 }
 
 .lbEntries {
@@ -124,8 +155,31 @@ img {
   border-color: rgba(255, 0, 0, 0.9);
 }
 
+.dealButton:focus, .hitButton:focus {
+  background-color: rgba(255, 0, 0, 0.9);
+  border-color: rgba(255, 0, 0, 0.9);
+}
+
+.doubleDownButton {
+  background-color: black;
+  border-color: black;
+}
+
+.doubleDownButton:hover {
+  background-color: darkslategray;
+  border-color: darkslategray;
+}
+
+.doubleDownButton:focus {
+  background-color: darkslategray;
+  border-color: darkslategray;
+}
+
 .signUpIn .input-group-text {
   width: 105px;
+  background-color: black;
+  color: white;
+  border-color: black;
 }
 
 .betInput .input-group-text {

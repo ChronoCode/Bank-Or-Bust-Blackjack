@@ -96,14 +96,17 @@ class App extends React.Component {
   }
 
   doubleDown() {
-    let newCard = this.drawCard();
+    // prevents doubling down when not enough coins
+    if (this.state.bet < this.state.coins) {
+      let newCard = this.drawCard();
 
-    this.setState({
-      coins: this.state.coins - this.state.bet,
-      bet: this.state.bet * 2,
-      playerHand: this.state.playerHand.concat(newCard),
-      stage: 'playerStay'
-    })
+      this.setState({
+        coins: this.state.coins - this.state.bet,
+        bet: this.state.bet * 2,
+        playerHand: this.state.playerHand.concat(newCard),
+        stage: 'playerStay'
+      });
+    }
   }
 
   stayOrBust(situ) {
@@ -210,15 +213,15 @@ class App extends React.Component {
           if (this.findCardTotal(this.state.playerHand) === 21
             && this.state.playerHand.length === 2) {
             message = (
-              <Alert className='alert' variant='primary'>You got Blackjack! You win 2.5 times your bet!</Alert>
+              <Alert className='alert blackjack' variant='primary'>You got Blackjack! You win 2.5 times your bet!</Alert>
             );
           } else if (this.findCardTotal(this.state.dealerHand) > 21) {
             message = (
-              <Alert className='alert' variant='primary'>The Dealer Busted! You Win!</Alert>
+              <Alert className='alert dBust' variant='primary'>The Dealer Busted! You Win!</Alert>
             );
           } else {
             message = (
-              <Alert className='alert' variant='primary'>You Win!</Alert>
+              <Alert className='alert win' variant='primary'>You Win!</Alert>
             );
           }
           if (this.findCardTotal(this.state.playerHand) === 21
@@ -236,7 +239,7 @@ class App extends React.Component {
           }
         } else if (winner === 'dealer') {
           message = (
-            <Alert className='alert' variant='primary'>Dealer wins, you lose.</Alert>
+            <Alert className='alert lose' variant='primary'>Dealer wins, you lose.</Alert>
           );
           if (this.state.stage !== 'roundOver') {
             setTimeout(() => this.setState({
@@ -285,12 +288,15 @@ class App extends React.Component {
               lbData={this.state.leaderBoard}
               showLeaderBoard={this.state.showLeaderBoard}
               showHide={(show) => this.setState({ showLeaderBoard: show })}
+              stage={this.state.stage}
             />
             <div className='coinValues'>
               <h5>Your Coins: {this.state.coins}</h5>
               <h5>Current Bet: {this.state.bet}</h5>
             </div>
-            {message}
+            <div className='message'>
+              {message}
+            </div>
             <Dealer dealerHand={this.state.dealerHand}
               stage={this.state.stage} />
             <Player playerHand={this.state.playerHand}

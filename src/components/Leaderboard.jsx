@@ -7,7 +7,9 @@ import Table from 'react-bootstrap/Table';
 const Leaderboard = (props) => {
   return (
     <div>
-      <div className='showLeaderboard'>
+      <div className='showLeaderboard'
+        style={{ marginTop: (props.stage === 'beforeDeal' ? '10rem' : '2rem') }}
+      >
         <Button variant="primary" onClick={() => props.showHide(true)}>
           Show Leaderboard
         </Button>

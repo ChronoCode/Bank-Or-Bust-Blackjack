@@ -36,7 +36,7 @@ const Player = (props) => {
   } else {
     let doubleDownButton = null;
     if (props.playerHand.length === 2 && props.stage === 'afterDeal') {
-      doubleDownButton = (<Button onClick={props.doubleDown}>Double Down!</Button>);
+      doubleDownButton = (<Button className='doubleDownButton' onClick={props.doubleDown}>Double Down!</Button>);
     }
 
     let total = props.findCardTotal(props.playerHand);
@@ -46,7 +46,7 @@ const Player = (props) => {
       situationDiv = (
         <div className='playerActions'>
           <Button onClick={() => props.stayOrBust('playerStay')}>Stay</Button>
-          <Button calssName='hitButton' onClick={props.drawCardForPlayer}>Hit Me!</Button>
+          <Button className='hitButton' onClick={props.drawCardForPlayer}>Hit Me!</Button>
           {doubleDownButton}
         </div>
       );
