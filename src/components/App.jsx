@@ -21,6 +21,7 @@ class App extends React.Component {
       playerHand: [],
       stage: 'signUpIn',
       coins: 1000,
+      previousCoins: 0,
       bet: 0,
       notEnoughCoins: false,
       coinValueSent: false,
@@ -43,8 +44,9 @@ class App extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.coins !== prevState.coins) {
+    if (this.state.coins !== this.state.previousCoins) {
       this.updateLeaderBoardData();
+      this.setState({ previousCoins: this.state.coins });
     }
   }
 
