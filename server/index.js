@@ -4,7 +4,7 @@ const routeHandlers = require('./routeHandlers.js');
 const dbControl = require('../database/controllers/controllers.js');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.static('dist'));
 
