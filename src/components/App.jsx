@@ -86,12 +86,21 @@ class App extends React.Component {
 
     let remaining = this.state.shoe.slice(4);
 
+    let newBet = this.state.bet;
+    let newCoins = this.state.coins - this.state.bet;
+
+    if (newCoins < 0) {
+      newCoins = 0;
+      newBet = this.state.coins;
+    }
+
     this.setState({
       shoe: remaining,
       dealerHand: newDealerHand,
       playerHand: newPlayerHand,
       stage: 'afterDeal',
-      coins: this.state.coins - this.state.bet
+      coins: newCoins,
+      bet: newBet
     });
   }
 
