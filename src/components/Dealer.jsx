@@ -17,7 +17,7 @@ const Dealer = (props) => {
     || props.stage === 'roundOver') {
     return (
       <div className='dealerHand'>
-        <h3 className='handHeader'>Dealer's Hand:</h3>
+        <h3 className='handHeader'>Dealer's Hand: {props.findCardTotal(props.dealerHand)}</h3>
         <div className='cardDisplay'>
           {props.dealerHand.map((card, index) => {
             return (

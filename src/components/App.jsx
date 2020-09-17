@@ -108,7 +108,7 @@ class App extends React.Component {
 
   doubleDown() {
     // prevents doubling down when not enough coins
-    if (this.state.bet < this.state.coins) {
+    if (this.state.bet <= this.state.coins) {
       let newCard = this.drawCard();
 
       this.setState({
@@ -294,7 +294,6 @@ class App extends React.Component {
       if (this.state.shoe.length > 0) {
         return (
           <Container className='appContainer'>
-            {/* <h1 className='title'>Bank-Or-Bust Blackjack</h1> */}
             <Leaderboard
               lbData={this.state.leaderBoard}
               showLeaderBoard={this.state.showLeaderBoard}
@@ -308,9 +307,13 @@ class App extends React.Component {
             <div className='message'>
               {message}
             </div>
-            <Dealer dealerHand={this.state.dealerHand}
-              stage={this.state.stage} />
-            <Player playerHand={this.state.playerHand}
+            <Dealer
+              dealerHand={this.state.dealerHand}
+              stage={this.state.stage}
+              findCardTotal={this.findCardTotal}
+            />
+            <Player
+              playerHand={this.state.playerHand}
               stage={this.state.stage}
               drawCardForPlayer={() => this.setState({ playerHand: this.state.playerHand.concat(this.drawCard()) })}
               dealInitialCards={this.dealInitialCards}

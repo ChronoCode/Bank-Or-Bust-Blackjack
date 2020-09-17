@@ -68,7 +68,7 @@ const Player = (props) => {
 
     return (
       <div className='playerHand'>
-        <h3 className='handHeader'>Player's Hand:</h3>
+        <h3 className='handHeader'>Player's Hand: {total}</h3>
         <div className='cardDisplay'>
           {props.playerHand.map((card, index) => {
             return (
